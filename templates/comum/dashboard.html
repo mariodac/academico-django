@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+{% include 'partials/_preloader.html' %}
+
+{% include 'partials/_buscar.html' %}
+
+{% include 'partials/_header.html' %}
+
+<section class="best-acad-area">
+
+    <div class="container">
+
+        {% if matriculas %}
+
+        <h2>CURSOS</h2>
+
+        <div class="row">
+
+            <div class="col-12 col-sm-6 col-lg-4">
+
+                <div class="single-best-acad-area mb-30">
+
+                    {% for matricula in matriculas %}
+
+                    <div class="acad-content-left">
+
+                        <a href="">
+
+                            <h5>{{ matricula.curso.codigo }} - {{ matricula.curso.descricao }}</h5>
+
+                        </a>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% include 'partials/_footer.html' %}
+
+{% endblock %}

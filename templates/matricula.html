@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'partials/_preloader.html' %}
+{% include 'partials/_buscar.html' %}
+{% include 'partials/_header.html' %}
+<section class="best-acad-area">
+    <div class="container">
+        <div>
+            <span class="badge badge-secondary">Matricula</span>
+            {{matricula.matricula}}
+        </div>
+        <div>
+            <span class="badge badge-secondary">Nome do aluno</span>
+            {{matricula.nome_aluno}}
+        </div>
+        <div>
+            <span class="badge badge-secondary">Curso</span>
+            {{matricula.curso}}
+        </div>
+        <span class="badge badge-secondary">Data de acesso: </span>
+        <span>{{ data_acesso | date:"d/m/Y H:m:s"}}</span>
+    </div>
+</section>
+{% include 'partials/_footer.html' %}
+{% endblock %}

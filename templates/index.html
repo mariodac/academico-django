@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'partials/_preloader.html' %}
+{% include 'partials/_buscar.html' %}
+{% include 'partials/_header.html' %}
+<!-- CONTEUDO -->
+<section class="best-acad-area">
+    <div class="container">
+        {% if matriculas %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Matricula
+                        </th>
+                        <th>
+                            Nome do aluno
+                        </th>
+                        <th>
+                            Curso
+                        </th>
+                        <th>
+                            Ações
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for matricula in matriculas %}
+                    <tr>
+                        <td>{{matricula.matricula}}</td>
+                        <td>{{matricula.nome_aluno}}</td>
+                        <td>{{matricula.curso}}</td>
+                        <td><a href="{% url 'edu' matricula.id %}">Visualizar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        {% endif %}
+    </div>
+</section>
+{% include 'partials/_footer.html' %}
+{% endblock %}
+
