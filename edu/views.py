@@ -1,18 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
-from django.shortcuts import render
+from .models import Matricula
+from django.utils import timezone
 
 # Create your views here.
 def index(request):
-    dados_dos_institutos = {
-        'IF Goiano': 'Goiás',
-        'IFSP' : 'São Paulo',
-        'IFMG' : 'Minas Gerais',
-    }
+    matriculas = Matricula.objects.all()
+    
     dados = {
-        'dados_dos_institutos': dados_dos_institutos
+        'matriculas': matriculas
     }
     return render(request, 'index.html', dados)
 
-def cadastro(request):
-    return render(request, 'cadastro.html')
+
+def edu(request, matricula_id):
+    matricula = get_object_or_404(Matricula, pk=matricula_id)
+    data_acesso = timezone.now()
+    matricula_a_exibir = {
+        'matricula':matricula,
+        'data_acesso': data_acesso
+    }
+    return render(request, 'matricula.html', matricula_a_exibir)
